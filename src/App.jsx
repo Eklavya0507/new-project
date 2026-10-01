@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
@@ -8,8 +9,10 @@ import Tutor from "./pages/Tutor";
 import Profile from "./pages/Profile";
 
 export default function App() {
+  const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+    <BrowserRouter basename={basePath}>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
