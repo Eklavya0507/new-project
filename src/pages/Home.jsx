@@ -1,93 +1,122 @@
+import { ArrowRight, Bot, CheckCircle2, Sparkles, Target, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Bot,
-  Flame,
-  Sparkles,
-  Target,
-  Trophy,
-} from "lucide-react";
-import { courses } from "../data/courses";
 import CourseCard from "../components/CourseCard";
-import StatCard from "../components/StatCard";
+import { courses } from "../data/courses";
 
 export default function Home() {
   return (
-    <div>
-      <section className="glow relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-950/80 via-[#11162a] to-cyan-950/40 p-7 sm:p-10 lg:p-14">
-        <div className="absolute right-0 top-0 h-full w-1/2 bg-[radial-gradient(circle_at_center,rgba(99,102,241,.22),transparent_65%)]" />
-        <div className="relative max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-violet-200">
-            <Sparkles size={14} />
-            Your personalized AI learning path
+    <>
+      <section className="overflow-hidden bg-slate-950 text-white">
+        <div className="container-page grid min-h-[600px] items-center gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-blue-200">
+              <Sparkles size={16} />
+              AI-powered learning for the real world
+            </div>
+
+            <h1 className="max-w-3xl text-5xl font-black tracking-tight sm:text-6xl">
+              Learn skills that move your career forward.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+              Learn with structured courses, practical projects, and an AI tutor
+              that adapts explanations to the way you learn.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link to="/courses" className="btn-primary !bg-blue-500 hover:!bg-blue-400">
+                Explore courses
+                <ArrowRight size={18} />
+              </Link>
+              <Link
+                to="/tutor"
+                className="btn-secondary !border-white/15 !bg-white/5 !text-white hover:!bg-white/10"
+              >
+                <Bot size={18} />
+                Ask AI Tutor
+              </Link>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-6 text-sm text-slate-300">
+              <span className="flex items-center gap-2">
+                <CheckCircle2 className="text-emerald-400" size={17} />
+                Project-based
+              </span>
+              <span className="flex items-center gap-2">
+                <CheckCircle2 className="text-emerald-400" size={17} />
+                AI assistance
+              </span>
+              <span className="flex items-center gap-2">
+                <CheckCircle2 className="text-emerald-400" size={17} />
+                Learn at your pace
+              </span>
+            </div>
           </div>
 
-          <h1 className="mt-6 text-4xl font-black leading-[0.98] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
-            Build the skills to <span className="gradient-text">shape AI.</span>
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-            Learn AI by doing. Master concepts through short lessons, guided
-            projects, and an AI tutor that meets you at your level.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/courses"
-              className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-slate-950 hover:bg-slate-100"
-            >
-              Explore courses <ArrowRight size={17} />
-            </Link>
-            <Link
-              to="/tutor"
-              className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-bold hover:bg-white/10"
-            >
-              <Bot size={17} /> Ask AI Tutor
-            </Link>
+          <div className="relative">
+            <div className="absolute -inset-8 rounded-full bg-blue-500/20 blur-3xl" />
+            <div className="relative rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur">
+              <div className="rounded-2xl bg-white p-5 text-slate-900">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-slate-500">Your learning plan</p>
+                    <h2 className="mt-1 text-xl font-bold">Frontend Developer</h2>
+                  </div>
+                  <Target className="text-blue-600" />
+                </div>
+                <div className="mt-7 space-y-5">
+                  {[
+                    ["React fundamentals", 86],
+                    ["JavaScript patterns", 68],
+                    ["UI engineering", 42]
+                  ].map(([label, value]) => (
+                    <div key={label}>
+                      <div className="mb-2 flex justify-between text-sm">
+                        <span className="font-semibold">{label}</span>
+                        <span className="text-slate-500">{value}%</span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                        <div
+                          className="h-full rounded-full bg-blue-600"
+                          style={{ width: `${value}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-7 flex items-center gap-3 rounded-xl bg-blue-50 p-4">
+                  <Zap className="text-blue-600" size={20} />
+                  <p className="text-sm font-semibold text-blue-900">
+                    Keep your 7-day learning streak alive.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mt-8 grid gap-4 md:grid-cols-3">
-        <StatCard
-          icon={Flame}
-          label="Current streak"
-          value="12 days"
-          hint="Keep it going"
-        />
-        <StatCard
-          icon={Trophy}
-          label="XP earned"
-          value="2,840"
-          hint="+420 this week"
-        />
-        <StatCard
-          icon={Target}
-          label="Learning goal"
-          value="68%"
-          hint="On track"
-        />
-      </section>
-
-      <section className="mt-10">
-        <div className="mb-4 flex items-end justify-between">
+      <section className="container-page py-20">
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div>
-            <h2 className="text-xl font-black">Continue learning</h2>
-            <p className="mt-1 text-sm text-slate-500">
-              Pick up where you left off.
+            <p className="font-semibold text-blue-600">Start learning</p>
+            <h2 className="section-title mt-2">Popular courses</h2>
+            <p className="mt-3 max-w-2xl text-slate-500">
+              Build useful skills through focused lessons and hands-on practice.
             </p>
           </div>
-          <Link to="/courses" className="text-sm font-bold text-violet-300">
-            View all
+          <Link to="/courses" className="btn-secondary">
+            See all courses
+            <ArrowRight size={17} />
           </Link>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3">
-          {courses.slice(0, 3).map((course) => (
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {courses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 }
